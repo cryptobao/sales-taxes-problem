@@ -23,8 +23,13 @@ namespace Kata.SalesTaxesProblem
       var words = goodString.Split(' ');
       var amount = int.Parse(words.First());
       var price = double.Parse(words.Last());
-      var name = string.Join(' ', words.Skip(1).SkipLast(1).Where(x => x != "at"));
-      var isImported = name.Contains("imported");
+      var isImported = words.Contains("imported");
+      var name = string.Join(' ',
+        words.Skip(1)
+          .SkipLast(1)
+          .Where(x => x != "at")
+          .Where(x => x != "imported")
+      );
 
       return new Goods
       {
