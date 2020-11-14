@@ -9,9 +9,28 @@ namespace Kata.SalesTaxesProblem
 
   public class App : IApp
   {
+    private readonly IParser Parser;
+    private readonly ITaxApplier Applier;
+    private readonly IBillGenerator Generator;
+    private readonly IBillPrinter Printer;
+
+    public App(IParser parser, ITaxApplier applier,
+      IBillGenerator generator, IBillPrinter printer)
+    {
+      this.Parser = parser;
+      this.Applier = applier;
+      this.Generator = generator;
+      this.Printer = printer;
+    }
+
     public IEnumerable<string> Start(IEnumerable<string> inputs)
     {
-      throw new System.NotImplementedException();
+      var purchases = Parser.Parse(inputs);
+      var taxed = Applier.Apply(purchases);
+      var bill = Generator.Generate(taxed);
+      var result = Printer.Print(bill);
+
+      return result;
     }
   }
 }

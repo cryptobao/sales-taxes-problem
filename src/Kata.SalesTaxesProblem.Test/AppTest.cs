@@ -14,7 +14,12 @@ namespace Kata.SalesTaxesProblem.Test
     [SetUp]
     public void Setup()
     {
-      Sut = new App();
+      Sut = new App(
+        new Parser(),
+        new TaxApplier(new TaxCalculator()),
+        new BillGenerator(),
+        new BillPrinter()
+      );
     }
 
 
