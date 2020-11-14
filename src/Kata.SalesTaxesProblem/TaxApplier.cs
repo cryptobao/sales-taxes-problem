@@ -7,7 +7,7 @@ namespace Kata.SalesTaxesProblem
 {
   public interface ITaxApplier
   {
-    IEnumerable<GoodsTaxed> Apply (IEnumerable<Goods> goods);
+    IEnumerable<PurchaseTaxed> Apply (IEnumerable<Purchase> purchases);
   }
 
   public class TaxApplier : ITaxApplier
@@ -19,22 +19,20 @@ namespace Kata.SalesTaxesProblem
       this.Calculator = calculator;
     }
 
-    public IEnumerable<GoodsTaxed> Apply (IEnumerable<Goods> goods)
+    public IEnumerable<PurchaseTaxed> Apply (IEnumerable<Purchase> purchases)
     {
-      return goods.Select(goods => 
-        ToGoodsTaxed(goods, Calculator.Coefficient(goods.Name, goods.IsImported)));
+      return purchases.Select(purchase => 
+        ToPurchaseTaxed(purchase, Calculator.Coefficient(purchase.Item)));
     }
 
-
-    private GoodsTaxed ToGoodsTaxed(Goods goods, double kTax)
+    private PurchaseTaxed ToPurchaseTaxed(Purchase purchase, double kTax)
     {
-      var tax = goods.Price * kTax;
-      return new GoodsTaxed
+      var tax = purchase.Price * kTax;
+      return new PurchaseTaxed
       {
-        Amount = goods.Amount,
-        Name = goods.Name,
-        IsImported = goods.IsImported,
-        Price = goods.Price + tax,
+        Amount = purchase.Amount,
+        Item = purchase.Item,
+        Price = purchase.Price + tax,
         Tax = tax
       };
     }

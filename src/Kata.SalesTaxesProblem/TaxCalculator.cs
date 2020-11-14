@@ -6,7 +6,7 @@ namespace Kata.SalesTaxesProblem
 {
   public interface ITaxCalculator
   {
-    double Coefficient(string goodsName, bool isImported);
+    double Coefficient(Item item);
   }
   
   public class TaxCalculator : ITaxCalculator
@@ -24,10 +24,10 @@ namespace Kata.SalesTaxesProblem
       };
     }
 
-    public double Coefficient(string goodsName, bool isImported)
+    public double Coefficient(Item item)
     {
-      var basic = TaxFreeList.Contains(goodsName) ? TaxType.Free : TaxType.Basic;
-      var imported = isImported ? TaxType.Import : TaxType.Free;
+      var basic = TaxFreeList.Contains(item.Name) ? TaxType.Free : TaxType.Basic;
+      var imported = item.IsImported ? TaxType.Import : TaxType.Free;
 
       return basic + imported;
     }

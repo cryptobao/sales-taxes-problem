@@ -6,21 +6,21 @@ namespace Kata.SalesTaxesProblem
 {
   public interface IParser
   {
-    IEnumerable<Goods> Parse(IEnumerable<string> goodsStrings);
+    IEnumerable<Purchase> Parse(IEnumerable<string> purchaseStrings);
   }
 
 
   public class Parser : IParser
   {
 
-    public IEnumerable<Goods> Parse(IEnumerable<string> goodsStrings)
+    public IEnumerable<Purchase> Parse(IEnumerable<string> purchaseStrings)
     {
-      return goodsStrings.Select(Parse);
+      return purchaseStrings.Select(Parse);
     }
 
-    public Goods Parse(string goodString)
+    public Purchase Parse(string purchaseString)
     {
-      var words = goodString.Split(' ');
+      var words = purchaseString.Split(' ');
       var amount = int.Parse(words.First());
       var price = double.Parse(words.Last());
       var isImported = words.Contains("imported");
@@ -31,15 +31,13 @@ namespace Kata.SalesTaxesProblem
           .Where(x => x != "imported")
       );
 
-      return new Goods
+      return new Purchase
       {
         Amount = amount,
-        Name = name,
         Price = price,
-        IsImported = isImported
+        Item = new Item { Name = name, IsImported = isImported }
       };
-
     }
-
+    
   }
 }

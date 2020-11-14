@@ -1,3 +1,4 @@
+using Kata.SalesTaxesProblem.Domain;
 using NUnit.Framework;
 
 namespace Kata.SalesTaxesProblem.Test
@@ -20,11 +21,11 @@ namespace Kata.SalesTaxesProblem.Test
     [TestCase("packet of headache pills", 0)]
     [TestCase("bottle of perfume", 0.1)]
     [TestCase("music CD", 0.1)]
-    public void Calculate_ItemsNotImported(string goods, double expectedCoefficient)
+    public void Calculate_ItemsNotImported(string name, double expectedCoefficient)
     {
       // Arrange
       // Act
-      var actual = Sut.Coefficient(goods, false);
+      var actual = Sut.Coefficient(new Item { Name = name, IsImported = false });
       // Assert
       Assert.AreEqual(expectedCoefficient, actual, 0.001);
     }
@@ -35,11 +36,11 @@ namespace Kata.SalesTaxesProblem.Test
     [TestCase("packet of headache pills", 0.05)]
     [TestCase("bottle of perfume", 0.15)]
     [TestCase("music CD", 0.15)]
-    public void Calculate_ItemsImported(string goods, double expectedCoefficient)
+    public void Calculate_ItemsImported(string name, double expectedCoefficient)
     {
       // Arrange
       // Act
-      var actual = Sut.Coefficient(goods, true);
+      var actual = Sut.Coefficient(new Item { Name = name, IsImported = true });
       // Assert
       Assert.AreEqual(expectedCoefficient, actual, 0.001);
     }

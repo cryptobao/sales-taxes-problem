@@ -19,7 +19,7 @@ namespace Kata.SalesTaxesProblem.Test
     [TestCase("0 chocolate at 0.00", 0, "chocolate", 0, false)]
     [TestCase("3 box of imported chocolates at 11.25", 3, "box of chocolates", 11.25, true)]
     [TestCase("1 imported bottle of perfume at 27.99", 1, "bottle of perfume", 27.99, true)]
-    public void Parse_SingleGoods(string input, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
+    public void Parse_SingleElement(string input, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
     {
       // Arrange
       // Act
@@ -31,7 +31,7 @@ namespace Kata.SalesTaxesProblem.Test
     }
 
     [Test]
-    public void Parse_MultipleGoods()
+    public void Parse_MultipleElements()
     {
       // Arrange
       var inputs = new []
@@ -53,11 +53,16 @@ namespace Kata.SalesTaxesProblem.Test
     }
 
 
-    private void AssertIs(Goods actual, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
+    private void AssertIs(Purchase actual, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
     {
       Assert.AreEqual(expectedAmout, actual.Amount);
-      Assert.AreEqual(expectedName, actual.Name);
       Assert.AreEqual(expectedPrice, actual.Price);
+      AssertIs(actual.Item, expectedName, expectedIsImported);
+    }
+
+    private void AssertIs(Item actual, string expectedName, bool expectedIsImported)
+    {
+      Assert.AreEqual(expectedName, actual.Name);
       Assert.AreEqual(expectedIsImported, actual.IsImported);
     }
 
