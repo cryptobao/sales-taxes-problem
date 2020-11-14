@@ -6,12 +6,12 @@ namespace Kata.SalesTaxesProblem
 {
   public interface IBillGenerator
   {
-    Bill Generate(IEnumerable<PurchaseTaxed> purchases);
+    Bill Generate(IEnumerable<PurchaseSummary> purchases);
   }
 
   public class BillGenerator : IBillGenerator
   {
-    public Bill Generate(IEnumerable<PurchaseTaxed> purchases)
+    public Bill Generate(IEnumerable<PurchaseSummary> purchases)
     {
       return new Bill
       {

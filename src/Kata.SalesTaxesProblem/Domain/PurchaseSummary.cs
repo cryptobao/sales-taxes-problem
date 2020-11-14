@@ -1,6 +1,6 @@
 namespace Kata.SalesTaxesProblem.Domain
 {
-  public class PurchaseTaxed
+  public class PurchaseSummary
   {
     public int Amount { get; init; }
     public Item Item { get; init; }

@@ -10,11 +10,11 @@ namespace Kata.SalesTaxesProblem
   public class App : IApp
   {
     private readonly IParser Parser;
-    private readonly ITaxApplier Applier;
+    private readonly ICalculator Applier;
     private readonly IBillGenerator Generator;
     private readonly IBillPrinter Printer;
 
-    public App(IParser parser, ITaxApplier applier,
+    public App(IParser parser, ICalculator applier,
       IBillGenerator generator, IBillPrinter printer)
     {
       this.Parser = parser;

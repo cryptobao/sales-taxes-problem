@@ -21,7 +21,7 @@ namespace Kata.SalesTaxesProblem
       ;
     }
 
-    private string ToString(PurchaseTaxed purchase)
+    private string ToString(PurchaseSummary purchase)
     {
       var item = purchase.Item;
       var name = item.IsImported ? $"imported {item.Name}" : item.Name;

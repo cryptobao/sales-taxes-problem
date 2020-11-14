@@ -18,7 +18,7 @@ namespace Kata.SalesTaxesProblem.Test
       // Arrange
       var price = 5;
       var tax = 6;
-      var input = new PurchaseTaxed { Price = price, Tax = tax };
+      var input = new PurchaseSummary { Price = price, Tax = tax };
 
       // Act
       var actual = Sut.Generate(new [] { input });
@@ -36,9 +36,9 @@ namespace Kata.SalesTaxesProblem.Test
       // Arrange
       var input = new []
       {
-        new PurchaseTaxed { Price = 1, Tax = 4 },
-        new PurchaseTaxed { Price = 2, Tax = 5 },
-        new PurchaseTaxed { Price = 3, Tax = 6 },
+        new PurchaseSummary { Price = 1, Tax = 4 },
+        new PurchaseSummary { Price = 2, Tax = 5 },
+        new PurchaseSummary { Price = 3, Tax = 6 },
       };
 
       // Act

@@ -24,9 +24,9 @@ namespace Kata.SalesTaxesProblem.Test
         TotalTax = 8.749,
         Purchases = new [] 
         {
-          new PurchaseTaxed { Amount = 5, Price = 0.222, Item = new Item { Name = "item n°1" } },
-          new PurchaseTaxed { Amount = 7, Price = 888.115, Item = new Item { Name = "item n°2", IsImported = true } },
-          new PurchaseTaxed { Amount = 1, Price = 12345689.995, Item = new Item { Name = "item n°3" } }
+          new PurchaseSummary { Amount = 5, Price = 0.222, Item = new Item { Name = "item n°1" } },
+          new PurchaseSummary { Amount = 7, Price = 888.115, Item = new Item { Name = "item n°2", IsImported = true } },
+          new PurchaseSummary { Amount = 1, Price = 12345689.995, Item = new Item { Name = "item n°3" } }
         }
       };
 
