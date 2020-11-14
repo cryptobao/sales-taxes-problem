@@ -27,7 +27,7 @@ namespace Kata.SalesTaxesProblem.Test
 
       // Assert
       Assert.AreEqual(1, actualList.Count());
-      AssertGoods(actualList.Single(), expectedAmout, expectedName, expectedPrice, expectedIsImported);
+      AssertIs(actualList.Single(), expectedAmout, expectedName, expectedPrice, expectedIsImported);
     }
 
     [Test]
@@ -47,13 +47,13 @@ namespace Kata.SalesTaxesProblem.Test
       // Assert
       Assert.AreEqual(3, actualList.Count());
 
-      AssertGoods(actualList.ElementAt(0), 1, "soup", 13.75, false);
-      AssertGoods(actualList.ElementAt(1), 8, "banana", 2.82, true);
-      AssertGoods(actualList.ElementAt(2), 4, "box of monkeys", 1000.05, false);
+      AssertIs(actualList.ElementAt(0), 1, "soup", 13.75, false);
+      AssertIs(actualList.ElementAt(1), 8, "banana", 2.82, true);
+      AssertIs(actualList.ElementAt(2), 4, "box of monkeys", 1000.05, false);
     }
 
 
-    private void AssertGoods(Goods actual, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
+    private void AssertIs(Goods actual, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
     {
       Assert.AreEqual(expectedAmout, actual.Amount);
       Assert.AreEqual(expectedName, actual.Name);
