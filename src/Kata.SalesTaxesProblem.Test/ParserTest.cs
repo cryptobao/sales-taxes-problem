@@ -48,7 +48,7 @@ namespace Kata.SalesTaxesProblem.Test
       Assert.AreEqual(3, actualList.Count());
 
       AssertGoods(actualList.ElementAt(0), 1, "soup", 13.75, false);
-      AssertGoods(actualList.ElementAt(1), 8, "imported bana", 2.82, true);
+      AssertGoods(actualList.ElementAt(1), 8, "imported banana", 2.82, true);
       AssertGoods(actualList.ElementAt(2), 4, "box of monkeys", 1000.05, false);
     }
 
