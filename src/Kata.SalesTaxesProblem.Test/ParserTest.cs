@@ -55,7 +55,7 @@ namespace Kata.SalesTaxesProblem.Test
 
     private void AssertGoods(Goods actual, int expectedAmout, string expectedName, double expectedPrice, bool expectedIsImported)
     {
-      Assert.AreEqual(expectedAmout, actual.Amout);
+      Assert.AreEqual(expectedAmout, actual.Amount);
       Assert.AreEqual(expectedName, actual.Name);
       Assert.AreEqual(expectedPrice, actual.Price);
       Assert.AreEqual(expectedIsImported, actual.IsImported);

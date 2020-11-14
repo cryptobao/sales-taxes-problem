@@ -33,7 +33,7 @@ namespace Kata.SalesTaxesProblem
 
       return new Goods
       {
-        Amout = amount,
+        Amount = amount,
         Name = name,
         Price = price,
         IsImported = isImported
