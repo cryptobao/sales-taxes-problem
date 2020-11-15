@@ -30,6 +30,7 @@ namespace Kata.SalesTaxesProblem.Test
     [TestCase("example1_input","example1_output")]
     [TestCase("example2_input","example2_output")]
     [TestCase("example3_input","example3_output")]
+    [TestCase("test_emply_list_input","test_emply_list_output")]
     public void Start_UseExampleFile(string fileInput, string fileExpected)
     {
       // Arrange
