@@ -8,24 +8,27 @@ namespace Kata.SalesTaxesProblem.Test
 {
   public class CalculatorTest
   {
-    Mock<ITaxCalculator> MockTaxCalculator { get; set; }
+    Mock<ITaxCalculator> mockTaxCalculator { get; set; }
+    Mock<ITaxRoundUpStrategy> mockRoundUpStrategy { get; set; }
     Calculator Sut { get; set; }
 
     [SetUp]
     public void Setup()
     {
-      MockTaxCalculator = new Mock<ITaxCalculator>(MockBehavior.Strict);
-      Sut = new Calculator(MockTaxCalculator.Object);
+      mockTaxCalculator = new Mock<ITaxCalculator>(MockBehavior.Strict);
+      mockRoundUpStrategy = new Mock<ITaxRoundUpStrategy>(MockBehavior.Strict);
+      Sut = new Calculator(mockTaxCalculator.Object, mockRoundUpStrategy.Object);
     }
 
-    [TestCase(1, 0, 1, 0)]
-    [TestCase(5, 0.5, 7.5, 2.5)]
-    [TestCase(15.29, 0.15, 17.59, 2.3)]
-    public void Apply_AmountIsOneButTaxChanges(double price, double tax, double expectedPrice, double expectedTax) 
+    [TestCase(10, 90, 60)]
+    [TestCase(12.3, 110.7, 73.8)]
+    [TestCase(7.42, 66.78, 44.52)]
+    public void Apply_WithFixedAmountAndFixedTaxCoefficient(double price, double expectedPrice, double expectedTax)
     {
       // Arrange
-      MockTaxCalculator.Setup(x => x.Coefficient(It.IsNotNull<Item>())).Returns(tax);
-      var input = new Purchase { Amount = 1, Price = price, Item = new Item() };
+      mockTaxCalculator.Setup(x => x.Coefficient(It.IsNotNull<Item>())).Returns(0.5);
+      mockRoundUpStrategy.Setup(x => x.RoundUp(It.IsAny<double>())).Returns<double>(x => x * 4);
+      var input = new Purchase { Amount = 3, Price = price, Item = new Item() };
 
       // Act
       var actualList = Sut.Calculate(new [] { input });
@@ -37,31 +40,12 @@ namespace Kata.SalesTaxesProblem.Test
       AssertIs(input, expectedPrice, expectedTax, actual);
     }
 
-    [TestCase(1, 1, 1)]
-    [TestCase(10, 2, 20)]
-    [TestCase(15, 3, 45)]
-    public void Apply_TaxIsZeroButAmountChanges(double price, int amount, double expectedPrice)
-    {
-      // Arrange
-      MockTaxCalculator.Setup(x => x.Coefficient(It.IsNotNull<Item>())).Returns(0);
-      var input = new Purchase { Amount = amount, Price = price, Item = new Item() };
-
-      // Act
-      var actualList = Sut.Calculate(new [] { input });
-
-      // Assert
-      Assert.AreEqual(1, actualList.Count());
-
-      var actual = actualList.Single();
-      AssertIs(input, expectedPrice, 0, actual);
-    }
-
     [Test]
     public void Apply_WithMutipleElements()
     {
       // Arrange
-      MockTaxCalculator.Setup(x => x.Coefficient(It.IsNotNull<Item>()))
-        .Returns(1);
+      mockTaxCalculator.Setup(x => x.Coefficient(It.IsNotNull<Item>())).Returns(1);
+      mockRoundUpStrategy.Setup(x => x.RoundUp(It.IsAny<double>())).Returns<double>(x => x);
       
       var input = new [] 
       {

@@ -11,20 +11,23 @@ namespace Kata.SalesTaxesProblem.Test
     public App Sut;
     public string DirFilesTest = Path.Combine(Environment.CurrentDirectory, "FilesTest");
 
-    [SetUp]
-    public void Setup()
+    [OneTimeSetUp]
+    public void OneTimeSetup()
     {
+      var freeTaxList = new List<string>
+      {
+        "book",
+        "box of chocolates",
+        "chocolate",
+        "chocolate bar",
+        "packet of headache pills",
+      };
+
       Sut = new App(
         new Parser(),
         new Calculator(
-          new TaxCalculator(new List<string>
-          {
-            "book",
-            "box of chocolates",
-            "chocolate",
-            "chocolate bar",
-            "packet of headache pills",
-          })),
+          new TaxCalculator(freeTaxList),
+          new TaxDefaultRoundUpStrategy()),
         new BillGenerator(),
         new BillPrinter()
       );

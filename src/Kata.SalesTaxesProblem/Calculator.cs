@@ -12,23 +12,25 @@ namespace Kata.SalesTaxesProblem
 
   public class Calculator : ICalculator
   {
-    private readonly ITaxCalculator TaxCalculator;
+    private readonly ITaxCalculator taxCalculator;
+    private readonly ITaxRoundUpStrategy roundUpStrategy;
 
-    public Calculator(ITaxCalculator taxCalculator)
+    public Calculator(ITaxCalculator taxCalculator, ITaxRoundUpStrategy roundUpStrategy)
     {
-      this.TaxCalculator = taxCalculator;
+      this.taxCalculator = taxCalculator;
+      this.roundUpStrategy = roundUpStrategy;
     }
 
     public IEnumerable<PurchaseSummary> Calculate (IEnumerable<Purchase> purchases)
     {
       return purchases.Select(purchase => 
-        ToPurchaseTaxed(purchase, TaxCalculator.Coefficient(purchase.Item)));
+        ToPurchaseTaxed(purchase, taxCalculator.Coefficient(purchase.Item)));
     }
 
     private PurchaseSummary ToPurchaseTaxed(Purchase purchase, double kTax)
     {
       var price = purchase.Amount * purchase.Price;
-      var tax = purchase.Amount * Math.Ceiling(purchase.Price * kTax * 20) / 20;
+      var tax = purchase.Amount * roundUpStrategy.RoundUp(purchase.Price * kTax);
       return new PurchaseSummary
       {
         Amount = purchase.Amount,
