@@ -16,7 +16,15 @@ namespace Kata.SalesTaxesProblem.Test
     {
       Sut = new App(
         new Parser(),
-        new Calculator(new TaxCalculator()),
+        new Calculator(
+          new TaxCalculator(new List<string>
+          {
+            "book",
+            "box of chocolates",
+            "chocolate",
+            "chocolate bar",
+            "packet of headache pills",
+          })),
         new BillGenerator(),
         new BillPrinter()
       );

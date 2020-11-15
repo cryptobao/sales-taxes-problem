@@ -11,23 +11,16 @@ namespace Kata.SalesTaxesProblem
   
   public class TaxCalculator : ITaxCalculator
   {
-    private readonly List<string> TaxFreeList;
+    private readonly IList<string> taxFreeList;
 
-    public TaxCalculator()
+    public TaxCalculator(IList<string> taxFreelist)
     {
-      TaxFreeList = new List<string>
-      {
-        "book",
-        "box of chocolates",
-        "chocolate",
-        "chocolate bar",
-        "packet of headache pills",
-      };
+      this.taxFreeList = taxFreelist;
     }
 
     public double Coefficient(Item item)
     {
-      var basic = TaxFreeList.Contains(item.Name) ? TaxType.Free : TaxType.Basic;
+      var basic = taxFreeList.Contains(item.Name) ? TaxType.Free : TaxType.Basic;
       var imported = item.IsImported ? TaxType.Import : TaxType.Free;
 
       return basic + imported;

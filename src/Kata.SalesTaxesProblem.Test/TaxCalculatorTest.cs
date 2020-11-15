@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Kata.SalesTaxesProblem.Domain;
 using NUnit.Framework;
 
@@ -7,13 +8,20 @@ namespace Kata.SalesTaxesProblem.Test
   {
 
     TaxCalculator Sut;
+    List<string> taxFreelist;
 
     [SetUp]
     public void Setup()
     {
-      Sut = new TaxCalculator();
+      taxFreelist = new List<string>
+      {
+        "book",
+        "box of chocolates",
+        "chocolate",
+        "packet of headache pills"
+      };
+      Sut = new TaxCalculator(taxFreelist);
     }
-
 
     [TestCase("book", 0)]
     [TestCase("box of chocolates", 0)]
