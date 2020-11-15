@@ -9,26 +9,26 @@ namespace Kata.SalesTaxesProblem
 
   public class App : IApp
   {
-    private readonly IParser Parser;
-    private readonly ICalculator Applier;
-    private readonly IBillGenerator Generator;
-    private readonly IBillPrinter Printer;
+    private readonly IParser parser;
+    private readonly ICalculator applier;
+    private readonly IBillGenerator generator;
+    private readonly IBillPrinter printer;
 
     public App(IParser parser, ICalculator applier,
       IBillGenerator generator, IBillPrinter printer)
     {
-      this.Parser = parser;
-      this.Applier = applier;
-      this.Generator = generator;
-      this.Printer = printer;
+      this.parser = parser;
+      this.applier = applier;
+      this.generator = generator;
+      this.printer = printer;
     }
 
     public IEnumerable<string> Start(IEnumerable<string> inputs)
     {
-      var purchases = Parser.Parse(inputs);
-      var taxed = Applier.Calculate(purchases);
-      var bill = Generator.Generate(taxed);
-      var result = Printer.Print(bill);
+      var purchases = parser.Parse(inputs);
+      var taxed = applier.Calculate(purchases);
+      var bill = generator.Generate(taxed);
+      var result = printer.Print(bill);
 
       return result;
     }
