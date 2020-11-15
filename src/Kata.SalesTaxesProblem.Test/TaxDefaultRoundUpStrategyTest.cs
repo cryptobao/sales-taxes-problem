@@ -21,7 +21,7 @@ namespace Kata.SalesTaxesProblem.Test
       // Act
       var actual = sut.RoundUp(input);
       // Arrange
-      Assert.AreEqual(expected, actual, 0.001d);
+      AssertHelp.AreEqual(expected, actual);
     }
   }
 }

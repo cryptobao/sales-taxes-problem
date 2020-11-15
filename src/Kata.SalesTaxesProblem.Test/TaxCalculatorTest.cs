@@ -35,7 +35,7 @@ namespace Kata.SalesTaxesProblem.Test
       // Act
       var actual = Sut.Coefficient(new Item { Name = name, IsImported = false });
       // Assert
-      Assert.AreEqual(expectedCoefficient, actual, 0.001);
+      AssertHelp.AreEqual(expectedCoefficient, actual);
     }
 
     [TestCase("book", 0.05)]
@@ -50,7 +50,7 @@ namespace Kata.SalesTaxesProblem.Test
       // Act
       var actual = Sut.Coefficient(new Item { Name = name, IsImported = true });
       // Assert
-      Assert.AreEqual(expectedCoefficient, actual, 0.001);
+      AssertHelp.AreEqual(expectedCoefficient, actual);
     }
   }
 }

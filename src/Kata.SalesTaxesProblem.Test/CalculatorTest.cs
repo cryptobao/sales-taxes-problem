@@ -68,8 +68,8 @@ namespace Kata.SalesTaxesProblem.Test
 
     private void AssertIs(Purchase expected, double expectedPrice, double expectedTax, PurchaseSummary actual)
     {
-      Assert.AreEqual(expectedPrice, actual.Price, 0.001);
-      Assert.AreEqual(expectedTax, actual.Tax, 0.001);
+      AssertHelp.AreEqual(expectedPrice, actual.Price);
+      AssertHelp.AreEqual(expectedTax, actual.Tax);
       Assert.AreEqual(actual.Amount, expected.Amount);
       Assert.AreSame(actual.Item, expected.Item);
     }
