@@ -20,6 +20,7 @@ namespace Kata.SalesTaxesProblem
         "book",
         "box of chocolates",
         "chocolate",
+        "chocolate bar",
         "packet of headache pills",
       };
     }
