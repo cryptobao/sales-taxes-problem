@@ -20,7 +20,7 @@ namespace Kata.SalesTaxesProblem.Test
 
     [TestCase(1, 0, 1, 0)]
     [TestCase(5, 0.5, 7.5, 2.5)]
-    [TestCase(15.29, 0.15, 17.583, 2.293)]
+    [TestCase(15.29, 0.15, 17.59, 2.3)]
     public void Apply_AmountIsOneButTaxChanges(double price, double tax, double expectedPrice, double expectedTax) 
     {
       // Arrange

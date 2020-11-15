@@ -28,7 +28,7 @@ namespace Kata.SalesTaxesProblem
     private PurchaseSummary ToPurchaseTaxed(Purchase purchase, double kTax)
     {
       var price = purchase.Amount * purchase.Price;
-      var tax = price * kTax;
+      var tax = purchase.Amount * Math.Ceiling(purchase.Price * kTax * 20) / 20;
       return new PurchaseSummary
       {
         Amount = purchase.Amount,
