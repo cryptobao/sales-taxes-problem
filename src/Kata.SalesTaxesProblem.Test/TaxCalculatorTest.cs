@@ -29,7 +29,7 @@ namespace Kata.SalesTaxesProblem.Test
     [TestCase("packet of headache pills", 0)]
     [TestCase("bottle of perfume", 0.1)]
     [TestCase("music CD", 0.1)]
-    public void Calculate_ItemsNotImported(string name, double expectedCoefficient)
+    public void Coefficient_ItemsNotImported(string name, double expectedCoefficient)
     {
       // Arrange
       // Act
@@ -44,7 +44,7 @@ namespace Kata.SalesTaxesProblem.Test
     [TestCase("packet of headache pills", 0.05)]
     [TestCase("bottle of perfume", 0.15)]
     [TestCase("music CD", 0.15)]
-    public void Calculate_ItemsImported(string name, double expectedCoefficient)
+    public void Coefficient_ItemsImported(string name, double expectedCoefficient)
     {
       // Arrange
       // Act
