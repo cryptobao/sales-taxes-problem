@@ -23,14 +23,7 @@ namespace Kata.SalesTaxesProblem.Test
         "packet of headache pills",
       };
 
-      Sut = new App(
-        new Parser(),
-        new Calculator(
-          new TaxCalculator(freeTaxList),
-          new TaxDefaultRoundUpStrategy()),
-        new BillGenerator(),
-        new BillPrinter()
-      );
+      Sut = App.Instance(freeTaxList);
     }
 
 

@@ -32,5 +32,17 @@ namespace Kata.SalesTaxesProblem
 
       return result;
     }
+
+    public static App Instance(List<string> freeTaxList)
+    {
+      return new App(
+        new Parser(),
+        new Calculator(
+          new TaxCalculator(freeTaxList),
+          new TaxDefaultRoundUpStrategy()),
+        new BillGenerator(),
+        new BillPrinter()
+      );
+    }
   }
 }
