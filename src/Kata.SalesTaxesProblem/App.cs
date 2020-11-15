@@ -26,7 +26,7 @@ namespace Kata.SalesTaxesProblem
     public IEnumerable<string> Start(IEnumerable<string> inputs)
     {
       var purchases = Parser.Parse(inputs);
-      var taxed = Applier.Apply(purchases);
+      var taxed = Applier.Calculate(purchases);
       var bill = Generator.Generate(taxed);
       var result = Printer.Print(bill);
 

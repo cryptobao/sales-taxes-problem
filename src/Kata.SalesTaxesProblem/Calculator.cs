@@ -7,7 +7,7 @@ namespace Kata.SalesTaxesProblem
 {
   public interface ICalculator
   {
-    IEnumerable<PurchaseSummary> Apply (IEnumerable<Purchase> purchases);
+    IEnumerable<PurchaseSummary> Calculate (IEnumerable<Purchase> purchases);
   }
 
   public class Calculator : ICalculator
@@ -19,7 +19,7 @@ namespace Kata.SalesTaxesProblem
       this.TaxCalculator = taxCalculator;
     }
 
-    public IEnumerable<PurchaseSummary> Apply (IEnumerable<Purchase> purchases)
+    public IEnumerable<PurchaseSummary> Calculate (IEnumerable<Purchase> purchases)
     {
       return purchases.Select(purchase => 
         ToPurchaseTaxed(purchase, TaxCalculator.Coefficient(purchase.Item)));

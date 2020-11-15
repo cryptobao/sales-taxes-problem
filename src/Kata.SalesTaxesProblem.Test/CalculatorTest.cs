@@ -28,7 +28,7 @@ namespace Kata.SalesTaxesProblem.Test
       var input = new Purchase { Amount = 1, Price = price, Item = new Item() };
 
       // Act
-      var actualList = Sut.Apply(new [] { input });
+      var actualList = Sut.Calculate(new [] { input });
 
       // Assert
       Assert.AreEqual(1, actualList.Count());
@@ -47,7 +47,7 @@ namespace Kata.SalesTaxesProblem.Test
       var input = new Purchase { Amount = amount, Price = price, Item = new Item() };
 
       // Act
-      var actualList = Sut.Apply(new [] { input });
+      var actualList = Sut.Calculate(new [] { input });
 
       // Assert
       Assert.AreEqual(1, actualList.Count());
@@ -71,7 +71,7 @@ namespace Kata.SalesTaxesProblem.Test
       };
 
       // Act
-      var actualList = Sut.Apply(input);
+      var actualList = Sut.Calculate(input);
 
       // Assert
       Assert.AreEqual(3, actualList.Count());
