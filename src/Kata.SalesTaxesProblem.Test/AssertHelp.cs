@@ -5,7 +5,7 @@ namespace Kata.SalesTaxesProblem.Test
   public static class AssertHelp
   {
     ///<summary>
-    /// Compara di 'double'. Sono uguali se la loro differenza è <= 0.001
+    /// Compara due 'double'. Sono uguali se la loro differenza è <= 0.001
     ///</summary>
     public static void AreEqual(double expected, double actual)
     {
