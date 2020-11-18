@@ -3,6 +3,8 @@
 Assicurarsi di avere installato .NET Core SDK 5.0 (eventualmente si può seguire [questa guida](https://docs.microsoft.com/en-us/dotnet/core/install/)).
 
 ## Esecuzione
+I seguenti comandi dovranno essere esguiti dalla **root** del progetto.
+
 
 È possibile eseguire l'applicazione usando il comando
 ```bash
@@ -23,7 +25,7 @@ Nel caso non si disponga di questi file è possibile usare quelli presenti nei s
 
 Ad esempio:
 ```
-dotnet run --project ./src/Kata.SalesTaxesProblem ./src/Kata.SalesTaxesProblem.Test/FilesTest/example3_input ./freetax_list
+dotnet run --project ./src/Kata.SalesTaxesProblem ./src/Kata.SalesTaxesProblem.Test/FilesTest/example3_input ./src/Kata.SalesTaxesProblem.Test/FilesTest/example_freetax_list
 ```
 
 ## Test
