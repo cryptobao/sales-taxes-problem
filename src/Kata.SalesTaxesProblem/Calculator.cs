@@ -24,10 +24,10 @@ namespace Kata.SalesTaxesProblem
     public IEnumerable<PurchaseSummary> Calculate (IEnumerable<Purchase> purchases)
     {
       return purchases.Select(purchase => 
-        ToPurchaseTaxed(purchase, taxCalculator.Coefficient(purchase.Item)));
+        ToPurchaseSummary(purchase, taxCalculator.Coefficient(purchase.Item)));
     }
 
-    private PurchaseSummary ToPurchaseTaxed(Purchase purchase, double kTax)
+    private PurchaseSummary ToPurchaseSummary(Purchase purchase, double kTax)
     {
       var price = purchase.Amount * purchase.Price;
       var tax = purchase.Amount * roundUpStrategy.RoundUp(purchase.Price * kTax);
