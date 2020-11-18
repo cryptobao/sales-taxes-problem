@@ -1,4 +1,38 @@
 # Sales taxes problem
+
+Assicurarsi di avere installato .NET Core SDK 5.0 (eventualmente si può seguire [questa guida](https://docs.microsoft.com/en-us/dotnet/core/install/)).
+
+## Esecuzione
+
+È possibile eseguire l'applicazione usando il comando
+```bash
+dotnet run --project ./src/Kata.SalesTaxesProblem
+```
+Tuttavia se si esegue senza passare alcun argomento l'applicazione risponderà così:
+```
+You need to provide these arguments:
+1. File path of what was purchased
+2. (OPTIONAL) List of goods exempt from sales tax
+```
+
+Come, infatti, è scritto l'applicazione necessita di questi argomenti in questo ordine:
+1. Il percorso al file contenete la lista degli oggetti comprati
+2. Opzionalmente è possibile specificare la lista degli oggetti alla quale non vengono applicate le “tasse di base”.
+
+Nel caso non si disponga di questi file è possibile usare quelli presenti nei sorgenti dei test.
+
+Ad esempio:
+```
+dotnet run --project ./src/Kata.SalesTaxesProblem ./src/Kata.SalesTaxesProblem.Test/FilesTest/example3_input ./freetax_list
+```
+
+## Test
+È possibile eseguire i test usando il comando
+```
+dotnet test src/Kata.SalesTaxesProblem.Test
+```
+---
+
 This problem requires some kind of input. You are free to implement any mechanism for feeding input into your solution (for example, using hard coded data within a unit test). You should provide sufficient evidence that your solution is complete by, as a minimum, indicating that it works correctly against the supplied test data.
 
 ## PROBLEM: SALES TAXES
