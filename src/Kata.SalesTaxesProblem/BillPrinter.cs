@@ -25,10 +25,10 @@ namespace Kata.SalesTaxesProblem
     {
       var item = purchase.Item;
       var name = item.IsImported ? $"imported {item.Name}" : item.Name;
-      return $"{purchase.Amount} {name}: {string.Format("{0:0.00}", Round(purchase.Price))}";
+      return $"{purchase.Amount} {name}: {Round(purchase.Price)}";
     }
 
-    private string Round(double d) => string.Format("{0:0.00}", d);
+    private string Round(double d) => string.Format("{0:0.00}", d).Replace(',','.');
     
   }
 }

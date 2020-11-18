@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Kata.SalesTaxesProblem.Domain;
 
@@ -22,7 +23,7 @@ namespace Kata.SalesTaxesProblem
     {
       var words = purchaseString.Split(' ');
       var amount = int.Parse(words.First());
-      var price = double.Parse(words.Last());
+      var price = double.Parse(words.Last(), CultureInfo.InvariantCulture);
       var isImported = words.Contains("imported");
       var name = string.Join(' ',
         words.Skip(1)
