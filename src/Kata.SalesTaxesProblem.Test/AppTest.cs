@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Kata.SalesTaxesProblem.Test
@@ -14,14 +15,7 @@ namespace Kata.SalesTaxesProblem.Test
     [OneTimeSetUp]
     public void OneTimeSetup()
     {
-      var freeTaxList = new List<string>
-      {
-        "book",
-        "box of chocolates",
-        "chocolate",
-        "chocolate bar",
-        "packet of headache pills",
-      };
+      var freeTaxList = ReadFileTest("example_freetax_list").ToList();
 
       Sut = App.Instance(freeTaxList);
     }
